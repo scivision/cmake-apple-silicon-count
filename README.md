@@ -12,3 +12,14 @@ Thus we developed these workarounds for CMake-based projects.
 The C code was 
 [originally provided](https://github.com/open-mpi/hwloc/issues/454#issuecomment-819436128)
 by @fozog and we subsequently modified it.
+
+In our real projects, we handle other architectures similarly using hwloc.
+To keep this example minimal, we only show MacOS handling.
+
+## Usage
+
+```sh
+cmake -B build
+```
+
+If on Apple Silicon CPU, this will print the number of "fast" CPU cores detected.
