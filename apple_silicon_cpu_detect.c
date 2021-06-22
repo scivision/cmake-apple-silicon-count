@@ -1,3 +1,5 @@
+// ASPL license: https://opensource.apple.com/license/apsl/
+//------------------------------------------------------------
 // build like:
 //   clang hw.c -framework Foundation -framework IOKit
 // ./a.out then gives with an M1 Apple Silicon CPU:
