@@ -5,12 +5,13 @@ project(AppleSiliconCPUdetect LANGUAGES C)
 # NOTE: in general MacOS "-framework" is specially handled by link_libraries. link_options does not work.
 
 #----- OPTIONAL demo targets
+if(APPLE)
 add_executable(as_detect_aspl as_detect_aspl.c)
 target_link_libraries(as_detect_aspl PRIVATE "-framework Foundation" "-framework IOKit")
 
 add_executable(as_detect as_detect.c)
 target_link_libraries(as_detect PRIVATE "-framework Foundation" "-framework IOKit")
-
+endif(APPLE)
 #------ typical CMake use follows
 
 function(count_apple_silicon)
