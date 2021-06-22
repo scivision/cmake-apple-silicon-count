@@ -4,10 +4,14 @@ project(AppleSiliconCPUdetect LANGUAGES C)
 
 # NOTE: in general MacOS "-framework" is specially handled by link_libraries. link_options does not work.
 
-# target optional, not directly used here
-add_executable(apple_silicon_detect apple_silicon_cpu_detect.c)
-target_link_libraries(apple_silicon_detect PRIVATE "-framework Foundation" "-framework IOKit")
+#----- OPTIONAL demo targets
+add_executable(as_detect_aspl as_detect_aspl.c)
+target_link_libraries(as_detect_aspl PRIVATE "-framework Foundation" "-framework IOKit")
 
+add_executable(as_detect as_detect.c)
+target_link_libraries(as_detect PRIVATE "-framework Foundation" "-framework IOKit")
+
+#------ typical CMake use follows
 
 function(count_apple_silicon)
 
@@ -15,8 +19,8 @@ function(count_apple_silicon)
 # built and run at configure time with captured output
 
 try_run(run_code build_ok
- ${PROJECT_BINARY_DIR}/cpu_count 
- ${CMAKE_CURRENT_SOURCE_DIR}/apple_silicon_cpu_detect.c 
+ ${CMAKE_CURRENT_BINARY_DIR}/cpu_count
+ ${CMAKE_CURRENT_SOURCE_DIR}/as_detect.c
  LINK_LIBRARIES "-framework Foundation" "-framework IOKit"
  COMPILE_OUTPUT_VARIABLE build_out
  RUN_OUTPUT_VARIABLE count_raw
